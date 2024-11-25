@@ -10,12 +10,12 @@ Sequence databases
 
 * Large, comprehensive sequence collection
 
-  - `UniProtKB <http://www.uniprot.org>`_ - Comprehensive resource for protein sequence and annotation
+  - `UniProt <http://www.uniprot.org>`_ - Comprehensive resource for protein sequence and annotation
     data produced by the Universal Protein Resource consortium.
 
 * Annotated sequences and determined 3D structures
 
-  - `Swiss-Prot <http://www.uniprot.org>`_ - Manually reviewed, high quality protein sequence and
+  - `SwissProt <http://www.uniprot.org>`_ - Manually reviewed, high quality protein sequence and
     functional annotation - produced by UniProt.
 
   - `PDB <http://www.pdb.org>`_ - Sequences with an experimentally determined structure.
@@ -39,41 +39,6 @@ Sequence databases
     Produced by UniProt, in collaboration with Ensembl and the NCBI
     Reference Sequence collection.
 
-* Other
-
-  - `Ensembl Genomes <http://www.ensemblgenomes.org>`_ - Ensembl Genomes is a
-    resource for genomic data for several thousands of invertebrate species.
-    All translations resulting from known and novel gene predictions in Ensembl Genomes,
-    including hypothetical proteins, are included. For lists of all the species
-    in each sub division within Ensembl Genomes please see
-    `Bacteria <http://bacteria.ensembl.org/index.html>`_,
-    `Fungi <http://fungi.ensembl.org/index.html>`_,
-    `Metazoa <http://metazoa.ensembl.org/index.html>`_,
-    `Plants <http://plants.ensembl.org/index.html>`_
-    and `Protists <http://protists.ensembl.org/index.html>`_.
-
-  - `Ensembl <http://www.ensembl.org>`_ - Searches may be performed across the entire set or one of
-    `Human <http://www.ensembl.org/Homo_sapiens>`_,
-    `Mouse <http://www.ensembl.org/Mus_musculus>`_, or
-    `Zebrafish <http://www.ensembl.org/Danio_rerio>`_
-
-  - `Quest for Orthologs <http://questfororthologs.org>`_
-
-  - `MEROPS <http://merops.sanger.ac.uk>`_ -
-    a set of domain sequences from the MEROPS database of proteolytic
-    enzymes. For each peptidase in the collection, the sequence of
-    the known or predicted domain that carries the active site residues is
-    included. Homologues that are not proteolytically active because one or
-    more active site residues are missing or replaced are also included.
-    For each inhibitor, the sequence is that of each inhibitory domain.
-    Domains homologous to an inhibitory domain are also included, even if
-    no inhibitory activity is known.
-
-  - `ChEMBL <https://www.ebi.ac.uk/chembl/>`_ -
-    A manually curated database of bioactive molecules with drug-like
-    properties. It brings together chemical, bioactivity and genomic data
-    to aid the translation of genomic information into effective new drugs.
-
 The default database is UniProt reference proteomes.
 
 ---------------------
@@ -81,28 +46,6 @@ Profile HMM databases
 ---------------------
 
 * `Pfam <http://pfam.xfam.org>`_ - A large comprehensive collection of protein families.
-
-* `TIGRFAMs <http://www.jcvi.org/cgi-bin/tigrfams/index.cgi>`_
-  - Models that are designed for automated sequence annotation
-  and that are aimed at matching the full length (or near) of the
-  sequence.
-
-* `Gene3D <http://gene3d.biochem.ucl.ac.uk>`_
-  - A collection of models that are based on CATH structural
-  protein domains.
-
-* `SUPERFAMILY <http://supfam.cs.bris.ac.uk/SUPERFAMILY/>`_
-  - A collection of models, which represent structural protein
-  domains at the SCOP superfamily level.
-
-* `PIRSF <http://pir.georgetown.edu/pirwww/dbinfo/pirsf.shtml>`_ -
-  Models that are designed to provide a comprehensive and
-  non-overlapping clustering of UniProtKB.
-
-* `TreeFam <http://www.treefam.org>`_ -
-  A database of phylogenetic trees of animal gene families.
-
-The default database is Pfam.
 
 -----------------
 Search provenance
