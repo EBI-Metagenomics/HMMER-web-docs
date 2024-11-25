@@ -1,6 +1,15 @@
 Changelog
 =========
 
+**Version 2.44, November 2024**
+
+- Changes
+
+  - UniProt release 2024_04
+  - PDB release 41.24
+  - Pfam release 37.0
+  - Showing AlphaFold predicted structures
+
 **Version 2.43, February 2022**
 
 - Changes
