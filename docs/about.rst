@@ -83,3 +83,9 @@ publication that describes this work:
 B.L. Miller, T.J. Wheeler, F. Schreiber, A. Bateman and S.R. Eddy
 **Nucleic Acids Research** (2015) Web Server Issue 43:W30-W38.
 `10.1093/nar/gkv397 (PDF) <https://nar.oxfordjournals.org/content/43/W1/W30.full.pdf>`_
+
+`HMMER web server: 2018 update <https://academic.oup.com/nar/article/46/W1/W200/5037715>`_ Simon C Potter, Aurélien Luciani,
+Sean R Eddy, Youngmi Park, Rodrigo Lopez, Robert D Finn
+*Nucleic Acids Research* Volume 46, Issue W1, 2 July 2018, Pages W200–W204.
+`10.1093/nar/gky448 (PDF) <https://academic.oup.com/nar/article-pdf/46/W1/W200/25110422/gky448.pdf>`_
+
