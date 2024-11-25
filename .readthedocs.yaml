@@ -3,7 +3,7 @@
    build:
       os: ubuntu-24.04
       tools:
-         python: "2"
+         python: "2.7"
 
    sphinx:
       configuration: docs/conf.py
