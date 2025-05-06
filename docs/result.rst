@@ -140,7 +140,7 @@ Independent E-value
   enough on their own, are summing up to lift the sequence up to a high
   score.
 
-.. image:: _static/images/seq_alignment.gif
+.. image:: _static/images/seq_alignment.png
    :alt: Sequence alignment
 
 There can be multiple hits per sequence because HMMER performs
@@ -164,7 +164,7 @@ clicking on the "Customise" link at the top right of table. This will
 reveal a form (shown below) that facilitates a range of custom display
 options.
 
-.. image:: _static/images/customize.gif
+.. image:: _static/images/customize.png
    :alt: Results customisation
 
 The columns that can be selected are:
@@ -211,7 +211,7 @@ Hit Positions
   scaled according to each other, so the query may scale differently from
   row to row in the table.
 
-.. image:: _static/images/hit_pos.gif
+.. image:: _static/images/hit_pos.png
    :alt: Hit positions
 
 Page Size
@@ -223,7 +223,7 @@ Page Size
 Profile HMM Matches
 +++++++++++++++++++
 
-.. image:: _static/images/hmmscan_simple.gif
+.. image:: _static/images/hmmscan_simple.png
    :alt: Profile HMM matches
 
 This table differs slightly from the Query Match table above. As one
@@ -245,7 +245,7 @@ alignment accuracy), HMM model length and match start/end positions, as
 well as the bit score can be obtained by clicking on the **advanced** option
 in the top right of the table heading row.
 
-.. image:: _static/images/hmmscan_advanced.gif
+.. image:: _static/images/hmmscan_advanced.png
    :alt: Advanced HMM options
 
 Similar to the sequence hits, the show link reveals the alignment. This
@@ -253,7 +253,7 @@ produces a similar formated pairwise alignment. Notice, that the query
 is now in the bottom row as the sequence is compared to a profile, not
 converted into a profile as with phmmer.
 
-.. image:: _static/images/hmmscan_align.gif
+.. image:: _static/images/hmmscan_align.png
    :alt: HMM alignments
 
 
