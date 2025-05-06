@@ -420,7 +420,7 @@ listing, which indicates all the parent nodes of the currently selected
 node. Clicking on one of the parents allows you to traverse back up to
 that level of the tree.
 
-.. image:: _static/images/tree.gif
+.. image:: _static/images/tree.png
    :alt: Taxonomic tree
 
 Species Distribution
@@ -473,7 +473,7 @@ domains on them is also considered as an architecture. Each architecture
 group is represented on the page by a row in the table and each row can
 be divided into four subsections. An example is shown below:
 
-.. image:: _static/images/domain_arch.gif 
+.. image:: _static/images/domain_arch.png
    :alt: Domain architecture
 
 Row Subsections
