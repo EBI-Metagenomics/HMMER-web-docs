@@ -20,7 +20,7 @@ To start a phmmer search use this command
    :language: bash
    :linenos:
 
-*Note: to preserve new lines use \\\n*
+*Note: to preserve new lines use \\\\n*
 
 To retrieve the results from a search use this command
 
