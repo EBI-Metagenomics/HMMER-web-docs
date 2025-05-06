@@ -154,74 +154,6 @@ Note: In the case of **hmmscan** the query and target lines correspond to
 different data. The second line (previously query) is the "Model" and
 the fourth line (previously target) is the "query".
 
-Jackhmmer iterations
-++++++++++++++++++++
-
-Iteration summary
-^^^^^^^^^^^^^^^^^
-
-After each iteration for jackhmmer, rather than proceeding to the
-results page, you are taken to a summary page, which gives an overview
-of the number of gained, lost or dropped sequences. Sequences gained are
-those that are new sequences compared to the previous iterations,
-scoring above the significance threshold. Lost are previously
-significant sequences, that are no longer reported in the results.
-Dropped sequences are sequences that were previously significant, but
-have fallen below the threshold but are still reported.
-
-.. image:: _static/images/jackhmmer_summary.gif
-   :alt: Jackhmmer summary
-
-From this table it is possible to view the results of all previous
-iterations. Thus, if you decide that you want to re-run the latest
-iteration you can simply go back one and add/remove sequences.
-Alternatively, if you are happy with the way searches are proceeding,
-trigger of the next search, with will take all significant hits for the
-next iteration. If you job converges before 5 iterations (which is the
-current maximum), the table will be updated to indicate convergence and
-the run next iteration button will be remove.
-
-Jackhmmer results
-^^^^^^^^^^^^^^^^^
-
-The results for jackhmmer are much the same as described above for
-phmmer. However, there are a few additions. The first is the inclusions
-of some navigation at the top of the page. The (lost matches) will show
-a table of the sequences that have been completely lost compared to the
-previous iteration. There are links to the first new match and to the
-page of results where the threshold appears. There are also grey buttons
-in this block that allow you to move between iterations.
-
-.. image:: _static/images/jackhmmer_navigation.gif
-   :alt: Jackhmmer navigation
-
-Another difference is that each row in the results has a check box,
-which allows sequences to be either removed or added to the results (a
-checked box denotes that they will be used in the next iteration). This
-allows you to modify which sequences are included in successive rounds
-of jackhmmer. By default, all sequences above the significance threshold are
-included. As a convenience, an option to override this and deselect
-all sequences is provided. This might useful if you wish to manually add
-only a small number of sequences.
-A button at the top and bottom of each page will allow you
-to start the next iteration.
-
-.. image:: _static/images/jackhmmer_matches.gif
-   :alt: Jackhmmer navigation
-
-New sequences in the results are denoted with a green background behind
-the target accession/identifier. Sequences that have dropped below
-threshold compared to the previous iteration are shown with a red
-background behind the target accession/identifier.
-
-HMM logos
-^^^^^^^^^
-
-Below the results table for hmmsearch and jackhmmer (after first
-iteration if started with a single sequence), you will find an HMM logo.
-This produces a graphical representation of the profile HMM, with large
-letters representing more probably/conserved amino acids.
-
 Customisation of Results
 ++++++++++++++++++++++++
 
@@ -251,22 +183,11 @@ Species
   Shows the species to which this sequence belongs and provides a link to the
   `NCBI taxonomy Browser <http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi>`_
 
-Cross-refs
-  Displays cross-references to other resources available at the EBI through `EBI Search <https://www.ebi.ac.uk/ebisearch>`_.
-
 Kingdom
   Shows the kingdom to which this sequence belongs
 
-Known Structure (PDB)
-  Shows whether a structure has been deposited in the PDB for some or all
-  of the sequence, based on `SIFTS <http://www.ebi.ac.uk/pdbe/docs/sifts/>`_
-
-Identical Sequences
-  As most of the target sequence databases contain some redundancy, we
-  collapse identical sequences into a single row of the table. The
-  redundant sequence information (accessions, description and species) is
-  accessible by clicking the number found in the [ Identical Seqs ]
-  column. This produces a pop-up table like the one shown below
+Predicted Structures (AlphaFold)
+  Shows whether a structure has been predicted by `AlphaFold <https://alphafold.ebi.ac.uk/>`_
 
 Number of Hits
   The number of regions that score above the reporting threshold
@@ -293,33 +214,11 @@ Hit Positions
 .. image:: _static/images/hit_pos.gif
    :alt: Hit positions
 
-Rows Per Page
+Page Size
   In addition to column selection you can also choose the number of rows
-  to be displayed per page. The default value is currently set to 100 rows
+  to be displayed per page. The default value is currently set to 50 rows
   per page, which shows you a reasonable amount of information, without
-  over loading your browser. While an "All" option is provided, it is
-  recommend that an initial limit be set as some searches can produce a
-  large number of results, which may crash your browser during the
-  rendering of the page.
-
-The ability to **show all** hit alignments is disabled when more that 100
-results are shown in the page.
-
-Identical Sequences
-^^^^^^^^^^^^^^^^^^^
-
-As most of the target sequence databases contain some redundancy,
-identical sequences are collapsed into a single row of the table. The
-redundant sequence information (accessions, description and species) is
-accessible by clicking the number found in the [ Identical Seqs ]
-column. This will reveal a table like the one below, which shows
-information about the other identical sequences.
-
-.. image:: _static/images/redundant_pop_up.gif
-   :alt: Identical sequences
-
-When more than 20 identical sequences are present, the "Next" link
-allows navigation through the list of redundant sequences.
+  over loading your browser.
 
 Profile HMM Matches
 +++++++++++++++++++
@@ -331,9 +230,8 @@ This table differs slightly from the Query Match table above. As one
 sequence is being compared to a profile HMM database, we just report the
 **domain** hits.
 
-This table is shown automatically for hmmscan searches and can be
-revealed on phmmer searches by clicking on the "Show hit details" link
-under the domain graphic. This gives the basic list of matches to Pfam
+This table is shown automatically for hmmscan searches.
+This gives the basic list of matches to Pfam
 domains, including the Pfam identifier, accession, clan accession and
 short description. The start/end positions in the basic view relate to
 the domain envelope. Finally, the domain conditional and independent
@@ -341,15 +239,6 @@ E-values (described above). As before, rows in the match table that have
 a yellow background indicate matches that score above the reporting
 thresholds, yet below the inclusion or significance thresholds.
 
-Pfam and TIGRFAMs both curate significance thresholds for their
-families. If a search is performed that uses either bit score or E-value
-thresholds, it is possible to match entries that are not deemed to be
-significant by those databases. To indicate when this is the case, we
-have included a ⚠ symbol to signify that these matches fall below the
-database curated thresholds.
-
-.. image:: _static/images/warning_matches.gif
-   :alt: Match warnings
 
 The alignment start/end positions (that indicate the position of maximum
 alignment accuracy), HMM model length and match start/end positions, as
@@ -367,25 +256,9 @@ converted into a profile as with phmmer.
 .. image:: _static/images/hmmscan_align.gif
    :alt: HMM alignments
 
-For searches against TreeFam the best hit only is shown, calculated as the
-hit with the lowest E-value below the threshold of 1e-29. If more than one hit
-have this E-value, that with the highest score is used.
 
 Database specific result fields
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Gene3D
-......
-
-The table of Gene3D results shows a final architecture of domain
-hits. These are selected from the full list by
-`cath-resolve-hits <http://cath-tools.readthedocs.io/en/latest/tools/cath-resolve-hits>`_,
-which resolves candidate hits to a final architecture using a
-dynamic-programming algorithm. The table includes a column for the hits'
-regions, which include any gaps of 30 residues or more.
-
-.. image:: _static/images/gene3d.gif 
-   :alt: Gene3D
 
 Pfam
 ....
@@ -398,28 +271,6 @@ families from the same clan where the best match (determined by lowest
 E-value), is taken and the rest are out-competed. In the results, the
 entry that has won the competition is indicated by a ✔ next to the clan
 accession and will be rendered in the domain graphic.
-
-Superfamily
-...........
-
-Similar to Gene3D, after hmmscan with Superfamily models as the target
-database, the matches are post processed to assign refined domain
-boundaries and E-value for the superfamily match. Thus, the results
-table for Superfamily is substantially different to those for the other
-HMM databases. Based on the superfamily match, the post processing then
-assigns a 'Family' based on sequence belonging to that Superfamily in
-the SCOP classification. If the family E-value is greater than 0.0001,
-the family match details have a yellow background. This E-value does not
-come from HMMER, but rather from the Superfamily post processing. The
-superfamily E-values are adjusted from HMMER to compensate for the fact
-that the Superfamily database can have multiple models representing each
-superfamily, and are thus not independent as assumed in the E-value
-calculation. To access the actual model/sequence data as calculated by
-HMMER, click advanced in the top right corner. The domain boundaries
-that should be cited for Superfamily are those in the 'Regions' column.
-
-.. image:: _static/images/superfamily.gif 
-   :alt: Superfamily alignments
 
 Domain Graphic
 ++++++++++++++
@@ -459,63 +310,6 @@ occurred. A full length match is indicated by the coloured bar spanning
 the entire length of the graphic. A shorter match will show the coloured
 bar overlaid onto a thinner grey bar.
 
-Other Sequence Features
-+++++++++++++++++++++++
-
-When a sequence is searched using hmmscan, phmmer or jackhmmer, the
-query sequence is also searched with three additional methods to
-identify sequence features, namely regions of disorder, signal peptides,
-transmembranes and coiled-coils.
-
-.. image:: _static/images/other_seq_feature.gif 
-   :alt: Other sequence features
-
-If a search returns no results, then the graphic is not displayed. To
-make it clear when a search has been run, we have added small indicators
-at the bottom of the sequence features section. When a search has
-successfully completed it will be shown with a small green tick (✔) next
-to it.
-
-Disordered regions
-^^^^^^^^^^^^^^^^^^
-
-We use the IUPred method for the prediction of disordered regions in the
-query sequence. The `IUPred server <http://iupred.enzim.hu/>`_
-provides more detailed disorder
-prediction results than currently offered here.
-
-| `Bioinformatical approaches to characterize intrinsically disordered/unstructured proteins. <https://europepmc.org/abstract/MED/20007729>`_
-|   Dosztányi Z., Mészáros B., Simon I.
-|   Briefings in Bioinformatics (2010) 11:225-43.
-
-| `IUPred: web server for the prediction of intrinsically unstructured regions of proteins based on estimated energy content. <https://europepmc.org/abstract/MED/15955779>`_
-|   Dosztányi Z., Csizmok V., Tompa P., Simon I.
-|   Bioinformatics (2005) 21:3433-3434.
-
-Signal peptides and Transmembrane regions
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The Phoibus program is used to identify both signal peptides and
-transmembrane regions in the query sequence. The Phobius server provides
-more detailed prediction results than currently offered here.
-
-| `A combined transmembrane topology and signal peptide prediction method. <https://europepmc.org/abstract/MED/15111065>`_
-|   Käll L., Krogh A., Sonnhammer E.L.
-|   Journal of Molecular Biology (2004) 338:1027-36.
-
-Coiled-coil regions
-^^^^^^^^^^^^^^^^^^^
-
-A derivative of Rob Russels ncoils program that was based on the Lupas
-et al. program for predicting coiled-coils in the query sequence.
-
-| `Predicting coiled coils from protein sequences. <https://europepmc.org/abstract/MED/2031185>`_
-|   Lupas A., Van Dyke M., Stock J.
-|   Science (1991) 252:1162-1164.
-
-Note: When the above algorithms do not return any significant regions,
-the results are not drawn as part of the domain graphic.
-
 Hit Coverage & Similarity
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -533,18 +327,6 @@ position in the query, we determine the relative percentage identity
 (grey area) and similarity (blue line) of the sequences covering that
 position. This allows the rapid identification of more conserved
 positions in query sequence.
-
-.. image:: _static/images/coverage_plot.gif 
-   :alt: Coverage plot
-
-As the variation of sequence similarity and identity can vary
-substantially from position to position, it can lead to very noisy
-looking graphs. To reduce this noise, we average the score over a window
-of 3 positions (one position either side of the current position).
-Although this may produce a visually more attractive graph, it can mask
-some information, in particular invariant positions. Thus, we also
-provide access to the unsmoothed or raw graph, using the button to the
-right of the graph.
 
 Hit Graph
 
@@ -565,97 +347,57 @@ according to the taxonomic kingdom to which the source organism belongs.
 It is then simple to assess the taxonomic range of sequence matches to
 the query sequence.
 
-Under each table, there is a row of two links.
-
 Downloading
 +++++++++++
 
-The downloads section is accessed by clicking on the download link below
-the results table. There are a total of 8 different download formats for
+The downloads section is accessed by clicking on the **Download** tab at the top of the page.
+There are a total of 9 different download formats for
 the different search algorithms:
 
-.. _STOCKHOLM: https://en.wikipedia.org/wiki/Stockholm_format
-.. _FASTA: http://en.wikipedia.org/wiki/FASTA_format
 
-Some formats support a range parameter to permit downloading a subset of the results. This is analagous to
-the that used for the score view (see :ref:`api-results`).
-
-+------------+--------------------------------+-----------------------------------------------+---------+-------+
-| Format    | Description                     | Algorithm                                     | Gzipped | Range |
-+------------+--------------------------------+-----------+-----------+-----------+-----------+---------+-------+
-|                                             | phmmer    | hmmsearch | hmmscan   | jackhmmer |         |       |
-+------------+--------------------------------+-----------+-----------+-----------+-----------+---------+-------+
-| FASTA      | Single file containing         | ✔         | ✔         |           | ✔         | ✔       | ✔     |
-|            | all the regions matched        |           |           |           |           |         |       |
-|            | in your hits in FASTA          |           |           |           |           |         |       |
-|            | format                         |           |           |           |           |         |       |
-+------------+--------------------------------+-----------+-----------+-----------+-----------+---------+-------+
-| Full       | As for FASTA, but the          | ✔         | ✔         |           | ✔         | ✔       | ✔     |
-| Length     | full length sequences for      |           |           |           |           |         |       |
-| FASTA      | significant search hits        |           |           |           |           |         |       |
-+------------+--------------------------------+-----------+-----------+-----------+-----------+---------+-------+
-| Aligned    | Significant search hits        | ✔         | ✔         |           | ✔         | ✔       |       |
-| FASTA      | returned in the aligned        |           |           |           |           |         |       |
-|            | FASTA_ format                  |           |           |           |           |         |       |
-+------------+--------------------------------+-----------+-----------+-----------+-----------+---------+-------+
-| STOCKHOLM  | Significant search hits        | ✔         | ✔         |           | ✔         | ✔       |       |
-|            | returned in STOCKHOLM_         |           |           |           |           |         |       |
-|            | format. Useful if you wish to  |           |           |           |           |         |       |
-|            | use your results with the      |           |           |           |           |         |       |
-|            | command line version of HMMER  |           |           |           |           |         |       |
-+------------+--------------------------------+-----------+-----------+-----------+-----------+---------+-------+
-| ClustalW   | Significant search hits        | ✔         | ✔         |           | ✔         | ✔       |       |
-|            | returned in ClustalW format    |           |           |           |           |         |       |
-+------------+--------------------------------+-----------+-----------+-----------+-----------+---------+-------+
-| PSI-BLAST  | Significant search hits        | ✔         | ✔         |           | ✔         | ✔       |       |
-|            | returned in PSI-BLAST format   |           |           |           |           |         |       |
-+------------+--------------------------------+-----------+-----------+-----------+-----------+---------+-------+
-| PHYLIP     | Significant search hits        | ✔         | ✔         |           | ✔         | ✔       |       |
-|            | returned in PHYLIP format      |           |           |           |           |         |       |
-+------------+--------------------------------+-----------+-----------+-----------+-----------+---------+-------+
-| Plain text | Designed to be human readable  | ✔         | ✔         | ✔         | ✔         |         | ✔     |
-|            | with less information compared |           |           |           |           |         |       |
-|            | to the other formats           |           |           |           |           |         |       |
-+------------+--------------------------------+-----------+-----------+-----------+-----------+---------+-------+
-| XML        | Machine readable with all the  | ✔         | ✔         | ✔         | ✔         |         | ✔     |
-|            | output data from HMMER         |           |           |           |           |         |       |
-+------------+--------------------------------+-----------+-----------+-----------+-----------+---------+-------+
-| JSON       | As XML, but in JSON format     | ✔         | ✔         | ✔         | ✔         |         | ✔     |
-+------------+--------------------------------+-----------+-----------+-----------+-----------+---------+-------+
-| HMM        | A profile HMM generated from   |           | ✔         |           | ✔         |         |       |
-|            | the uploaded multiple sequence |           |           |           |           |         |       |
-|            | alignment. LogoMat-M can be    |           |           |           |           |         |       |
-|            | used to generate a graphical   |           |           |           |           |         |       |
-|            | representation of the HMM      |           |           |           |           |         |       |
-+------------+--------------------------------+-----------+-----------+-----------+-----------+---------+-------+
-
-Search details
-++++++++++++++
-
-The search details provides you with the exact time that the search was
-performed on our servers, the complete command used to perform the
-search and the database searched against. If the database has a version
-associated with it this will be documented, as well as the date that we
-downloaded the database. An example of the provenance data is shown
-here:
-
-* Date Started: 2010-12-31 09:58:14
-* Cmd: phmmer -E 10 --domE 10 --incE 0.01 --incdomE 0.03 --mx BLOSUM62 --pextend 0.4 --popen 0.02 --seqdb 6
-* Database: uniprotrefprot, downloaded on 2010-12-11
-* Search Sequence::
-
-    >2abl_A mol:protein length:163  ABL TYROSINE KINASE
-    MGPSENDPNLFVALYDFVASGDNTLSITKGEKLRVLGYNHNGEWCEAQ
-    TKNGQGWVPSNYITPVNSLEKHSWYHGPVSRNAAEYLLSSGINGSFLV
-    RESESSPGQRSISLRYEGRVYHYRINTASDGKLYVSSESRFNTLAELV
-    HHHSTVADGLITTLHYPAP
-
-We also include your query sequence, alignment or HMM (the latter two
-are truncated, but clicking on the link will show them in full).
-Should you have bookmarked or performed multiple searches and have lost
-track of which job id corresponds to which job, then this provides a way
-of tracking the search. You should also double check that this sequence
-is the same as the one you submitted.
++------------+--------------------------------+-----------------------------------+---------+
+| Format    | Description                     | Algorithm                         | Gzipped |
++------------+--------------------------------+-----------+-----------+-----------+---------+
+|                                             | phmmer    | hmmsearch | hmmscan   |         |
++------------+--------------------------------+-----------+-----------+-----------+---------+
+| FASTA      | Single file containing         | ✔         | ✔         |           | ✔       |
+|            | all the regions matched        |           |           |           |         |
+|            | in your hits in FASTA          |           |           |           |         |
+|            | format                         |           |           |           |         |
++------------+--------------------------------+-----------+-----------+-----------+---------+
+| Full       | As for FASTA, but the          | ✔         | ✔         |           | ✔       |
+| Length     | full length sequences for      |           |           |           |         |
+| FASTA      | significant search hits        |           |           |           |         |
++------------+--------------------------------+-----------+-----------+-----------+---------+
+| Aligned    | Significant search hits        | ✔         | ✔         |           | ✔       |
+| FASTA      | returned in the aligned        |           |           |           |         |
+|            | FASTA_ format                  |           |           |           |         |
++------------+--------------------------------+-----------+-----------+-----------+---------+
+| STOCKHOLM  | Significant search hits        | ✔         | ✔         |           | ✔       |
+|            | returned in STOCKHOLM_         |           |           |           |         |
+|            | format. Useful if you wish to  |           |           |           |         |
+|            | use your results with the      |           |           |           |         |
+|            | command line version of HMMER  |           |           |           |         |
++------------+--------------------------------+-----------+-----------+-----------+---------+
+| ClustalW   | Significant search hits        | ✔         | ✔         |           | ✔       |
+|            | returned in ClustalW format    |           |           |           |         |
++------------+--------------------------------+-----------+-----------+-----------+---------+
+| PSI-BLAST  | Significant search hits        | ✔         | ✔         |           | ✔       |
+|            | returned in PSI-BLAST format   |           |           |           |         |
++------------+--------------------------------+-----------+-----------+-----------+---------+
+| PHYLIP     | Significant search hits        | ✔         | ✔         |           | ✔       |
+|            | returned in PHYLIP format      |           |           |           |         |
++------------+--------------------------------+-----------+-----------+-----------+---------+
+| Plain text | Designed to be human readable  | ✔         | ✔         | ✔         |         |
+|            | with less information compared |           |           |           |         |
+|            | to the other formats           |           |           |           |         |
++------------+--------------------------------+-----------+-----------+-----------+---------+
+| HMM        | A profile HMM generated from   |           | ✔         |           |         |
+|            | the uploaded multiple sequence |           |           |           |         |
+|            | alignment. LogoMat-M can be    |           |           |           |         |
+|            | used to generate a graphical   |           |           |           |         |
+|            | representation of the HMM      |           |           |           |         |
++------------+--------------------------------+-----------+-----------+-----------+---------+
 
 -------------
 Taxonomy view
@@ -672,7 +414,7 @@ species level is reached. Each node in the tree contains the
 classification name and the count of all hits from that point down.
 There is also a small hit distribution graphic located below each node,
 which indicates the proportion of significant hits found within that
-taxonomic group. Directly above the tree there is a directory like
+taxonomic group. Directly below the tree there is a directory like
 listing, which indicates all the parent nodes of the currently selected
 node. Clicking on one of the parents allows you to traverse back up to
 that level of the tree.
@@ -691,18 +433,6 @@ node. Along with each name we also show the number of hits that were
 found against sequences from the species. The last column is a link back
 to the score page that will provide more details on the hits associated
 with that species.
-
-Downloading
-+++++++++++
-
-This section is exactly the same as the Downloading section for the
-Score view
-
-Search details
-++++++++++++++
-
-This is exactly the same as the Search details section for the Score
-view
 
 ------------------------
 Domain Architecture view
@@ -739,7 +469,7 @@ by your search according to the Pfam domains found within each sequence.
 Sequences with identical domain architectures are grouped together and
 ordered by the most frequently occurring. Note, sequences with no
 domains on them is also considered as an architecture. Each architecture
-group is represented on the page by a row in the tbale and each row can
+group is represented on the page by a row in the table and each row can
 be divided into four subsections. An example is shown below:
 
 .. image:: _static/images/domain_arch.gif 
@@ -770,18 +500,6 @@ Graphic
 View Scores
   Clicking this link will take you back to the score view and restrict the
   results shown to only those that have the selected architecture.
-
-Downloading
-+++++++++++
-
-This section is exactly the same as the Downloading section for the
-Score view
-
-Search details
-++++++++++++++
-
-This is exactly the same as the Search details section for the Score
-view
 
 Refining Searches
 ^^^^^^^^^^^^^^^^^

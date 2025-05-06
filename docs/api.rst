@@ -5,20 +5,65 @@ API
 Introduction
 ++++++++++++
 
-Using curl
-^^^^^^^^^^
+API Documentation
+^^^^^^^^^^^^^^^^^
 
-The following section demonstrates a simple way of
-sending and retrieving XML using
-the simple Unix command line tool curl.
-The following example POSTs the request to the server (our server configuration requires you to also unset the default value in the header for Expect, -H 'Expect:'): 
+The documentation for the updated API in the form of OpenAPI specs can be found `here <https://wwwdev.ebi.ac.uk/Tools/hmmer/api/v1/docs>`_
+*Note: The main difference from the old api is that results are retrieved in an asynchronous manner*
 
+Examples using curl
+^^^^^^^^^^^^^^^^^^
+To start a phmmer search use this command
+.. code:: bash
+  curl -s -X POST "https://wwwdev.ebi.ac.uk/Tools/hmmer/api/v1/search/phmmer" \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json" \
+  -d '{
+    "database": "pdb",
+    "input": ">2abl_A mol:protein length:163  ABL TYROSINE KINASE\\nMGPSENDPNLFVALYDFVASGDNTLSITKGEKLRVLGYNHNGEWCEAQTKNGQGWVPS"
+  }'
+
+To retrieve the results from a search use this command
+.. code:: bash
+  curl -s -X GET \
+    "https://wwwdev.ebi.ac.uk/Tools/hmmer/api/v1/result/8ebb1d5f-4457-4da8-808c-f811105c3654" \
+    -H "Accept: application/json"
+
+The following section demonstrates a more integrated way of starting a phmmer search and retrieving results.
 .. code:: bash
 
-  curl -L -H 'Expect:' -H 'Accept:text/xml' -F seqdb=pdb -F algo=phmmer -F seq='<test.seq' https://www.ebi.ac.uk/Tools/hmmer/search/phmmer
+  #!/usr/bin/env bash
 
-.. literalinclude:: _static/code/phmmer_curl_post_response.xml
-   :language: xml
+  set -euo pipefail
+
+  FASTA="path/to/input.fasta"
+  OUTPUT="result.json"
+
+  RESPONSE=$(curl -s -X POST \
+      "https://wwwdev.ebi.ac.uk/Tools/hmmer/api/v1/search/phmmer" \
+      -H "Content-Type: application/json" \
+      -H "Accept: application/json" \
+      -d "{\"database\":\"pdb\",\"input\":\"$(cat $FASTA | awk '{printf "%s\\n", $0}' | sed 's/"/\\"/g')\"}")
+
+  JOB_ID=$(echo $RESPONSE | grep -o '"id":[^,}]*' | sed 's/"id": *"//g' | sed 's/"//g')
+
+  while true; do
+      RESPONSE=$(curl -s -X GET \
+          "https://wwwdev.ebi.ac.uk/Tools/hmmer/api/v1/result/$JOB_ID" \
+          -H "Accept: application/json")
+
+      STATUS=$(echo "$RESPONSE" | grep -o '"status"[[:space:]]*:[[:space:]]*"[^"]*"' | sed 's/.*:[[:space:]]*"//;s/"$//')
+
+      if [ "$STATUS" == "SUCCESS" ]; then
+          echo "Job completed successfully!"
+          echo $RESPONSE >$OUTPUT
+          break
+      fi
+
+      echo "Current status: $STATUS"
+
+      sleep 5
+  done
 
 In this example, the sequence to be searched is in the file test.seq. The value of
 the parameter "seq" needs to be quoted so that its value is taken correctly from the file.
@@ -156,49 +201,6 @@ Example::
 
   curl -L -H 'Expect:' -H 'Accept:application/json' -F taxFilterType=search -F tax_included=40674 -F tax_excluded=9606,10090 -F seqdb=pdb -F seq='<seq.fa' https://www.ebi.ac.uk/Tools/hmmer/search/phmmer
 
-
-Annotation searches
-^^^^^^^^^^^^^^^^^^^
-
-In addition to the standard HMMER searches an uploaded sequence can be annotated to show
-signal peptide & transmembrane regions, disordered regions and coiled-coil regions.
-
-Annotation requests should be POST-ed to the following urls.
-
-Disorder::
-
-  https://www.ebi.ac.uk/Tools/hmmer/annotation/disorder
-
-Example::
-
-  curl -L -H 'Expect:' -H 'Accept:text/xml' -F  seq='<test.fa' https://www.ebi.ac.uk/Tools/hmmer/annotation/disorder
-
-Coiled-coil::
-
-  https://www.ebi.ac.uk/Tools/hmmer/annotation/coils
-
-Example::
-
-  curl -L -H 'Expect:' -H 'Accept:text/xml' -F  seq='<test.fa' https://www.ebi.ac.uk/Tools/hmmer/annotation/coils
-
-Transmembrane & Signal Peptides::
-
-  https://www.ebi.ac.uk/Tools/hmmer/annotation/phobius
-
-Example::
-
-  curl -L -H 'Expect:' -H 'Accept:text/xml' -F  seq='<test.fa' https://www.ebi.ac.uk/Tools/hmmer/annotation/phobius
-
-Annotation results can be fetched with a GET request using the UUID supplied in the POST response::
-
-  https://www.ebi.ac.uk/Tools/hmmer/annotation/<annotation-type>/UUID
-
-Example::
-
-  curl -H 'Expect:' -H 'Accept:text/xml' https://www.ebi.ac.uk/Tools/hmmer/annotation/phobius/4162F712-1DD2-11B2-B17E-C09EFE1DC403
-
-.. _api-results:
-
 Results
 ^^^^^^^
 
@@ -251,14 +253,6 @@ This is one of the few services where the returned format can be modified using 
 |                   |"out" of range, then no results|                               |                               |
 |                   |will be returned.              |                               |                               |
 +-------------------+-------------------------------+-------------------------------+-------------------------------+
-
-Deleting results
-^^^^^^^^^^^^^^^^
-
-The results will normally only remain on the server for a maximum of one week; however they may be deleted
-by sending a DELETE request::
-
-  curl -X DELETE -H 'Accept:application/json' https://www.ebi.ac.uk/Tools/hmmer/results/F36F96A4-0806-11E8-A990-C006DCC3747A/score
 
 Taxonomy and domain views
 ^^^^^^^^^^^^^^^^^^^^^^^^^

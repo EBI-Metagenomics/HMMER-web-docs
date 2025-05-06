@@ -38,8 +38,8 @@
 Searches
 ========
 
-Four search types are supported: **phmmer**, **hmmsearch**, **hmmscan**
-and **jackhmmer**. See :ref:`HMMER algorithms` for more information.
+Four search types are supported: **phmmer**, **hmmsearch** and **hmmscan**.
+See :ref:`HMMER algorithms` for more information.
 
 There are many different ways that a search on the website
 can be modified. Below is a list of the different accepted
@@ -47,7 +47,7 @@ inputs and the parameters that can be modified. Also included
 are the parameter names that are required when using the
 API. This section is meant to be a guide to using the website,
 but further information can be found in the extensive `HMMER guide
-<http://eddylab.org/software/hmmer3/3.1b2/Userguide.pdf>`_.  The parameter
+<http://eddylab.org/software/hmmer/Userguide.pdf>`_.  The parameter
 names used on the site are typically the same as the command line
 parameters, with the exception of the input data parameters. Each section
 is followed by a summary table that can be used as a quick reference.
@@ -56,30 +56,28 @@ is followed by a summary table that can be used as a quick reference.
 Search query
 ------------
 
-**phmmer**, **hmmscan** and jackhmmer searches take a **single
+**phmmer** and **hmmscan** searches take a **single
 protein amino acid sequence** as the input, controlled
 by the **seq** parameter. The website accepts either `FASTA
 <https://en.wikipedia.org/wiki/FASTA_format>`_ format or an amino acid
-sequence.  Alternatively, a sequence can be specified by **accession**
-or **identifier**. When using the website, suggestions will be offered
-as the name is typed.
+sequence.
 
-+-----------------+--------------------------+--------------------------------+
-| Parameter name  | seq                      | acc                            |
-+-----------------+--------------------------+--------------------------------+
-| Description     | Sets the query sequence                                   |
-+-----------------+--------------------------+--------------------------------+
-| Algorithm(s)    | phmmer, hmmscan, jackhmmer                                |
-+-----------------+--------------------------+--------------------------------+
-| Accepted values | Protein sequence (FASTA) | Accession or identifier from   |
-|                 |                          | one of the supported databases |
-+-----------------+--------------------------+--------------------------------+
-| Default         | None                     |  None                          |
-+-----------------+--------------------------+--------------------------------+
-| Required        | Yes (seq or acc)                                          |
-+-----------------+--------------------------+--------------------------------+
++-----------------+---------------------------+
+| Parameter name  | seq                       |
++-----------------+---------------------------+
+| Description     | Sets the query sequence   |
++-----------------+---------------------------+
+| Algorithm(s)    | phmmer, hmmscan, jackhmmer|
++-----------------+---------------------------+
+| Accepted values | Protein sequence (FASTA)  |
+|                 |                           |
++-----------------+---------------------------+
+| Default         | None                      |
++-----------------+---------------------------+
+| Required        | Yes (seq or acc)          |
++-----------------+---------------------------+
 
-**hmmsearch** and **jackhmmer** searches can take either a multiple
+**hmmsearch** search can take either a multiple
 protein sequence alignment as an input or a profile HMM. The alignment
 formats currently accepted are:
 
@@ -92,14 +90,9 @@ formats currently accepted are:
 * `STOCKHOLM <https://en.wikipedia.org/wiki/Stockholm_format>`_ format
 * UC Santa Cruz A2M (alignment to model)
 
-The algorithms **hmmsearch** and **jackhmmer** also permit searches
+The algorithm **hmmsearch** also permits searches
 to be initiated with a profile HMM.  This can be entered as text via
-the website, or via the seq or file parameters when using the API.
-Alternatively, it is also possible to retrieve HMMs from one of the
-supported HMM databases using the accession/identifier look up (in a
-similar manner to the sequence look up described earlier). To restrict
-the look up to one particular HMM database, append "@" followed by the
-database name (all lower case) e.g. CBS\@pfam.
+the website.
 
 --------------
 Query examples
@@ -167,24 +160,6 @@ hmmsearch
 | Filter                               | Bias composition filtering on                      |
 +--------------------------------------+----------------------------------------------------+
 
-jackhmmer
-+++++++++
-
-+--------------------------------------+----------------------------------------------------+
-| Sequence database                    | UniProt reference proteomes                        |
-+--------------------------------------+----------------------------------------------------+
-| Significance threshold (E-value)     | |parameters.incE.default| for sequence matches;    |
-|                                      | |parameters.incdomE.default| for hit matches       |
-+--------------------------------------+----------------------------------------------------+
-| Reporting threshold (E-value)        | |parameters.E.default| for both sequences and hits |
-+--------------------------------------+----------------------------------------------------+
-| Gap penalties                        | open: |parameters.popen.default|;                  |
-|                                      | extend: |parameters.pextend.default|;              |
-|                                      | scoring matrix: |parameters.mx.default|            |
-+--------------------------------------+----------------------------------------------------+
-| Filter                               | Bias composition filtering on                      |
-+--------------------------------------+----------------------------------------------------+
-
 ---------
 Databases
 ---------
@@ -203,11 +178,10 @@ the few parameters that is required by phmmer, hmmsearch or jackhmmer.
 +-----------------+---------------------------------------+
 | Algorithm       | phmmer, hmmsearch, jackhmmer          |
 +-----------------+---------------------------------------+
-| Accepted values | uniprotrefprot, uniprotkb, swissprot, |
+| Accepted values | refprot, uniprot, swissprot,          |
 |                 | pdb, rp15, rp35, rp55, rp75,          |
-|                 | ensemblgenomes, ensembl, qfo          |
 +-----------------+---------------------------------------+
-| Default         | uniprotrefprot (see below)            |
+| Default         | refprot (see below)                   |
 +-----------------+---------------------------------------+
 | Required        | Yes                                   |
 +-----------------+---------------------------------------+
@@ -225,7 +199,7 @@ searched against.
 +-----------------+----------------------------------------------------+
 | Algorithm       | hmmscan                                            |
 +-----------------+----------------------------------------------------+
-| Accepted values | gene3d, pfam, tigrfam, superfamily, pirsf, treefam |
+| Accepted values | pfam                                               |
 +-----------------+----------------------------------------------------+
 | Default         | pfam                                               |
 +-----------------+----------------------------------------------------+
@@ -285,7 +259,7 @@ unassigned parameter is set to the other assigned parameter value.
 +-----------------+-------------------------------+--------------------------------+
 | Description     | Sequence E-value threshold    | Hit E-value threshold          |
 +-----------------+-------------------------------+--------------------------------+
-| Algorithm       | phmmer, hmmscan, hmmsearch, jackhmmer                          |
+| Algorithm       | phmmer, hmmscan, hmmsearch                                     |
 +-----------------+-------------------------------+--------------------------------+
 | Accepted values | |parameters.incE.min| < x     | |parameters.incdomE.max| < x   |
 |                 | ≤ |parameters.incE.max|       | ≤ |parameters.incdomE.max|     |
@@ -314,7 +288,7 @@ unassigned parameter is set to the other assigned parameter value.
 +-----------------+------------------------------+--------------------------------+
 | Description     | Sequence bit score threshold | Hit bit score threshold        |
 +-----------------+------------------------------+--------------------------------+
-| Algorithm       | phmmer, hmmscan, hmmsearch, jackhmmer                         |
+| Algorithm       | phmmer, hmmscan, hmmsearch                                    |
 +-----------------+------------------------------+--------------------------------+
 | Accepted values | x > |parameters.incT.min|    | x > |parameters.incdomT.min|   |
 +-----------------+------------------------------+--------------------------------+
@@ -346,7 +320,7 @@ Reporting E-values
 | Description     | Sequence E-value threshold    | Hit E-value threshold          |
 |                 | (reporting)                   | (reporting)                    |
 +-----------------+-------------------------------+--------------------------------+
-| Algorithm       | phmmer, hmmscan, hmmsearch, jackhmmer                          |
+| Algorithm       | phmmer, hmmscan, hmmsearch                                     |
 +-----------------+-------------------------------+--------------------------------+
 | Accepted values | |parameters.E.min| < x        | |parameters.domE.max| < x      |
 |                 | ≤ |parameters.E.max|          | ≤ |parameters.domE.max|        |
@@ -375,7 +349,7 @@ set server side.
 | Description     | Sequence E-value threshold    | Hit E-value threshold          |
 |                 | (reporting)                   | (reporting)                    |
 +-----------------+-------------------------------+--------------------------------+
-| Algorithm       | phmmer, hmmscan, hmmsearch, jackhmmer                          |
+| Algorithm       | phmmer, hmmscan, hmmsearch                                     |
 +-----------------+-------------------------------+--------------------------------+
 | Accepted values | x > |parameters.T.min|        | x > |parameters.domT.min|      |
 +-----------------+-------------------------------+--------------------------------+
@@ -390,50 +364,16 @@ Gathering thresholds
 
 Specific to hmmscan, the gathering threshold indicates to HMMER to use the
 sequence and hit thresholds defined in the HMM file to be searched. In
-the cases of `Pfam <http://pfam.xfam.org>`_ and
-`TIGRFAMs <http://www.jcvi.org/cgi-bin/tigrfams/index.cgi>`_
-these are set conservatively to ensure
-that there are no known false positives. Thus, if a query sequence scores
+the case of `Pfam <http://pfam.xfam.org>`_ these are set conservatively to
+ensure that there are no known false positives. Thus, if a query sequence scores
 with a bit score greater than or equal to the gathering thresholds, then
 that match can be treated with high confidence. This threshold is the
 default setting for hmmscan. If you are using the API, you can use the
 cut_ga parameter to signify that the gathering threshold should be used.
 
-Gene3D and Superfamily thresholds
-+++++++++++++++++++++++++++++++++
-
-Both of these HMM databases apply sophisticated post-processing steps
-on the HMMER results to make the domain assignments and disentangle
-overlapping matches. Each database uses an internal E-value cut-off of
-0.0001 for a domain match and does not employ the use of HMM specific
-bit score thresholds. Thus, cut-off manipulation has been disabled for
-these databases, thereby faithfully replicating the results of these
-HMM databases.
-
 =======================
 Advanced search options
 =======================
-
----------------------
-Taxonomy Restrictions
----------------------
-
-Search
-++++++
-
-You can add for taxa from all taxonomic levels (e.g. Homo sapiens or Metazoa)
-to be included in your search.
-You can add several taxa.
-
-To *only* remove taxa, but keep all the other taxa, you can select the
-“Include all taxa” button. Now, the search box will only be removing taxa,
-instead of adding them
-
-Pre-defined Taxonomic Tree
-++++++++++++++++++++++++++
-
-You can select different levels of a given taxonomic tree.
-All species within the selected levels will be included in your search.
 
 ------------------------
 Customisation of results
@@ -441,7 +381,7 @@ Customisation of results
 
 The result table may be customised to display different columns and/or to
 restrict the number of rows in the table to a manageable number. This can
-be performed before or after the search, with the customisation stored
+be performed after the search, with the customisation stored
 in a cookie so that you will not have to keep re-configuring the table
 after each search.
 
@@ -474,7 +414,7 @@ This feature can be disabled using the nobias parameter.
 +-----------------+------------------------------------------+
 | Description     | Turns off the bias composition filtering |
 +-----------------+------------------------------------------+
-| Algorithms      | phmmer, hmmscan, hmmsearch, jackhmmer    |
+| Algorithms      | phmmer, hmmscan, hmmsearch               |
 +-----------------+------------------------------------------+
 | Accepted Values | 1                                        |
 +-----------------+------------------------------------------+
@@ -485,7 +425,7 @@ This feature can be disabled using the nobias parameter.
 Gap penalties
 -------------
 
-These are specific to phmmer and jackhmmer (initiated with a single sequence).
+These are specific to phmmer.
 
 Open
 ++++
@@ -532,7 +472,7 @@ if no value is set.
 +-----------------+----------------------------+------------------------------+-------------------------+
 | Description     | Gap open penalty           | Gap extend penalty           | Substitution matrix     |
 +-----------------+----------------------------+------------------------------+-------------------------+
-| Algorithm(s)    | phmmer, jackhmmer                                                                   |
+| Algorithm(s)    | phmmer                                                                              |
 +-----------------+----------------------------+------------------------------+-------------------------+
 | Accepted values | |parameters.popen.min|     | |parameters.pextend.min|     | BLOSUM45, BLOSUM62,     |
 |                 | ≤ x <                      | ≤ x <                        | BLOSUM90, PAM30, PAM70  |
@@ -542,38 +482,6 @@ if no value is set.
 +-----------------+----------------------------+------------------------------+-------------------------+
 | Required        |  No                                                                                 |
 +-----------------+----------------------------+--------------------------------------------------------+
-
---------------
-Batch searches
---------------
-
-It is also possible to search multiple protein sequences in 'offline'
-batch mode. With both **phmmer** and **hmmscan**, files containing
-sequences in FASTA format can be uploaded via the "Upload a file"
-link. These sequences will then be searched, in turn, against the
-specified databases. There is a limit of 500 sequences per batch
-request. This is only to prevent overload of the servers: multiple batch
-requests are permitted.  Once the job is submitted, a different results
-page will be returned, showing a table with each row in that table
-representing a sequence in your file.  This table periodically updates,
-indicating the progress of your batch job. As results appear in the
-table, you can view the details. If you have many sequences, you can
-also request that an e-mail be sent when the batch job has completed.
-It is also possible to use **hmmsearch** in batch mode, again with a
-single multiple alignment or profile HMM.
-
-The **jackhmmer** batch system operates in a slightly different manner.
-Under the advance settings you can select the number of iterations to be
-performed and the batch mode will automaticaly run through each iteration
-(or until convergence), taking the results and using all the sequences
-scoring above the significance threholds to generate the input multiple
-sequnece alignment for the next round. Only one sequence, multiple
-sequence aligment or profile HMM can be submitted at a time.
-
-The batch system also works via the API, except the seq parameter is
-substituted for the file parameter; the other parameters remain the
-same. Requesting an e-mail notification can be set using the email
-parameter.
 
 --------
 Glossary

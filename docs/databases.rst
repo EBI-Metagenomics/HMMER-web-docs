@@ -51,7 +51,7 @@ Profile HMM databases
 Search provenance
 -----------------
 
-Clicking 'Search Details' at the end of the result page
+Clicking 'Search Details' at the top of the result table
 reveals a box that provides details of the search, including
 the query sequence (if applicable) and information
 regarding the date/release
