@@ -20,7 +20,7 @@ To start a phmmer search use this command
    :language: bash
    :linenos:
 
-*Note: to preserve new lines use \\n*
+*Note: to preserve new lines use \\\n*
 
 To retrieve the results from a search use this command
 
@@ -41,7 +41,7 @@ phmmer searches
 ^^^^^^^^^^^^^^^
 
 The main two input parameters to a phmmer search are a protein sequence
-and the target database, defined using the seq and seqdb parameters
+and the target database, defined using the input and database parameters
 respectively. Other parameters for controlling the search are defined
 in the search section. If any of these parameters are omitted, then the
 default values for that parameter will be set.
@@ -54,7 +54,7 @@ hmmscan searches
 ^^^^^^^^^^^^^^^^
 
 Hmmscan also has two main parameters - a sequence and a profile HMM
-database - defined using the seq and hmmdb parameters respectively. We
+database - defined using the input and database parameters respectively. We
 currently offer Pfam only.
 
 Searches should be POST-ed to the following url::
