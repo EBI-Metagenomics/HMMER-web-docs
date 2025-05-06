@@ -22,7 +22,7 @@ To start a phmmer search use this command
 
 To retrieve the results from a search use this command
 
-.. literalinclude:: _static/code/phmmer.sh
+.. literalinclude:: _static/code/result.sh
    :language: bash
    :linenos:
 
