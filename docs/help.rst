@@ -40,11 +40,10 @@ following:
 * :ref:`Changelog` - lists new features, bug fixes and improvements made to the
   site.
 
-* Twitter - follow hmm3r_ for micro-blogs about the HMMER software updates,
+* Bluesky - follow `@hmmer.bsky.social <https://bsky.app/profile/hmmer.bsky.social>`_ for micro-blogs about the HMMER software updates,
   target database updates and new Web features.
 
 * `Cryptogenomicon blog`_ - more detailed discussions of HMMER related
   topics, including the website.
   
-  .. _hmm3r: https://twitter.com/hmm3r/
   .. _Cryptogenomicon blog: https://cryptogenomicon.org/
