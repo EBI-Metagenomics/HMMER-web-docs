@@ -16,58 +16,21 @@ Examples using curl
 ^^^^^^^^^^^^^^^^^^
 To start a phmmer search use this command
 
-.. code:: bash
-  curl -s -X POST "https://wwwdev.ebi.ac.uk/Tools/hmmer/api/v1/search/phmmer" \
-  -H "Content-Type: application/json" \
-  -H "Accept: application/json" \
-  -d '{
-    "database": "pdb",
-    "input": ">2abl_A mol:protein length:163  ABL TYROSINE KINASE\\nMGPSENDPNLFVALYDFVASGDNTLSITKGEKLRVLGYNHNGEWCEAQTKNGQGWVPS"
-  }'
+.. literalinclude:: _static/code/phmmer.sh
+   :language: bash
+   :linenos:
 
 To retrieve the results from a search use this command
 
-.. code:: bash
-  curl -s -X GET \
-    "https://wwwdev.ebi.ac.uk/Tools/hmmer/api/v1/result/8ebb1d5f-4457-4da8-808c-f811105c3654" \
-    -H "Accept: application/json"
+.. literalinclude:: _static/code/phmmer.sh
+   :language: bash
+   :linenos:
 
 The following section demonstrates a more integrated way of starting a phmmer search and retrieving results.
 
-.. code:: bash
-
-  #!/usr/bin/env bash
-
-  set -euo pipefail
-
-  FASTA="path/to/input.fasta"
-  OUTPUT="result.json"
-
-  RESPONSE=$(curl -s -X POST \
-      "https://wwwdev.ebi.ac.uk/Tools/hmmer/api/v1/search/phmmer" \
-      -H "Content-Type: application/json" \
-      -H "Accept: application/json" \
-      -d "{\"database\":\"pdb\",\"input\":\"$(cat $FASTA | awk '{printf "%s\\n", $0}' | sed 's/"/\\"/g')\"}")
-
-  JOB_ID=$(echo $RESPONSE | grep -o '"id":[^,}]*' | sed 's/"id": *"//g' | sed 's/"//g')
-
-  while true; do
-      RESPONSE=$(curl -s -X GET \
-          "https://wwwdev.ebi.ac.uk/Tools/hmmer/api/v1/result/$JOB_ID" \
-          -H "Accept: application/json")
-
-      STATUS=$(echo "$RESPONSE" | grep -o '"status"[[:space:]]*:[[:space:]]*"[^"]*"' | sed 's/.*:[[:space:]]*"//;s/"$//')
-
-      if [ "$STATUS" == "SUCCESS" ]; then
-          echo "Job completed successfully!"
-          echo $RESPONSE >$OUTPUT
-          break
-      fi
-
-      echo "Current status: $STATUS"
-
-      sleep 5
-  done
+.. literalinclude:: _static/code/search_and_retrieve.sh
+   :language: bash
+   :linenos:
 
 In this example, the sequence to be searched is in the file test.seq. The value of
 the parameter "seq" needs to be quoted so that its value is taken correctly from the file.
