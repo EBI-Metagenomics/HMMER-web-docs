@@ -165,6 +165,7 @@ reveal a form (shown below) that facilitates a range of custom display
 options.
 
 .. image:: _static/images/customize.png
+   :width: 500px
    :alt: Results customisation
 
 The columns that can be selected are:
