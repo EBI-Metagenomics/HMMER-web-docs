@@ -9,11 +9,13 @@ API Documentation
 ^^^^^^^^^^^^^^^^^
 
 The documentation for the updated API in the form of OpenAPI specs can be found `here <https://wwwdev.ebi.ac.uk/Tools/hmmer/api/v1/docs>`_
+
 *Note: The main difference from the old api is that results are retrieved in an asynchronous manner*
 
 Examples using curl
 ^^^^^^^^^^^^^^^^^^
 To start a phmmer search use this command
+
 .. code:: bash
   curl -s -X POST "https://wwwdev.ebi.ac.uk/Tools/hmmer/api/v1/search/phmmer" \
   -H "Content-Type: application/json" \
@@ -24,12 +26,14 @@ To start a phmmer search use this command
   }'
 
 To retrieve the results from a search use this command
+
 .. code:: bash
   curl -s -X GET \
     "https://wwwdev.ebi.ac.uk/Tools/hmmer/api/v1/result/8ebb1d5f-4457-4da8-808c-f811105c3654" \
     -H "Accept: application/json"
 
 The following section demonstrates a more integrated way of starting a phmmer search and retrieving results.
+
 .. code:: bash
 
   #!/usr/bin/env bash
