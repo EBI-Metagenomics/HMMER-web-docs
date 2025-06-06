@@ -1,6 +1,12 @@
 Changelog
 =========
 
+**Version 3.0, May 2025**
+
+- Changes
+  - New API parameters
+  - New website
+
 **Version 2.44, November 2024**
 
 - Changes
