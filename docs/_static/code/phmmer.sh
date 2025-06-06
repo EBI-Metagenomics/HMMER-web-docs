@@ -1,4 +1,4 @@
-curl -s -X POST "https://wwwdev.ebi.ac.uk/Tools/hmmer/api/v1/search/phmmer" \
+curl -s -X POST "https://www.ebi.ac.uk/Tools/hmmer/api/v1/search/phmmer" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
     -d '{

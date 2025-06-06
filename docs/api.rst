@@ -8,7 +8,7 @@ Introduction
 API Documentation
 ^^^^^^^^^^^^^^^^^
 
-The documentation for the updated API in the form of OpenAPI specs can be found `here <https://wwwdev.ebi.ac.uk/Tools/hmmer/api/v1/docs>`_
+The documentation for the updated API in the form of OpenAPI specs can be found `here <https://www.ebi.ac.uk/Tools/hmmer/api/v1/docs>`_
 
 *Note: The main difference from the old api is that results are retrieved in an asynchronous manner*
 
@@ -48,7 +48,7 @@ default values for that parameter will be set.
 
 Searches should be POST-ed to the following url::
 
-  https://wwwdev.ebi.ac.uk/Tools/hmmer/api/v1/search/phmmer
+  https://www.ebi.ac.uk/Tools/hmmer/api/v1/search/phmmer
 
 hmmscan searches
 ^^^^^^^^^^^^^^^^
@@ -59,7 +59,7 @@ currently offer Pfam only.
 
 Searches should be POST-ed to the following url::
 
-  https://wwwdev.ebi.ac.uk/Tools/hmmer/api/v1/search/hmmscan
+  https://www.ebi.ac.uk/Tools/hmmer/api/v1/search/hmmscan
 
 hmmsearch searches
 ^^^^^^^^^^^^^^^^^^
@@ -72,7 +72,7 @@ with the default parameters.
 
 Searches should be POST-ed to the following url::
 
-  https://wwwdev.ebi.ac.uk/Tools/hmmer/api/v1/search/hmmsearch
+  https://www.ebi.ac.uk/Tools/hmmer/api/v1/search/hmmsearch
 
 jackhmmer searches
 ^^^^^^^^^^^^^^^^^^

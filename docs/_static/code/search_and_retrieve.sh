@@ -12,7 +12,7 @@ OUTPUT="result.json"
 # Perform a POST request to submit the FASTA sequence to the API and run an phmmer search
 # The sequence is read from the FASTA file and escaped appropriately
 RESPONSE=$(curl -s -X POST \
-    "https://wwwdev.ebi.ac.uk/Tools/hmmer/api/v1/search/phmmer" \
+    "https://www.ebi.ac.uk/Tools/hmmer/api/v1/search/phmmer" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
     -d "{\"database\":\"pdb\",\"input\":\"$(cat $FASTA | awk '{printf "%s\\n", $0}' | sed 's/"/\\"/g')\"}")
@@ -25,7 +25,7 @@ JOB_ID=$(echo $RESPONSE | grep -o '"id":[^,}]*' | sed 's/"id": *"//g' | sed 's/"
 while true; do
     # Perform a GET request to check the status of the job using the job ID
     RESPONSE=$(curl -s -X GET \
-        "https://wwwdev.ebi.ac.uk/Tools/hmmer/api/v1/result/$JOB_ID" \
+        "https://www.ebi.ac.uk/Tools/hmmer/api/v1/result/$JOB_ID" \
         -H "Accept: application/json")
 
     # Extract the status field from the JSON response using grep and sed
