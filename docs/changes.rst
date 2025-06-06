@@ -4,6 +4,7 @@ Changelog
 **Version 3.0, May 2025**
 
 - Changes
+
   - New API parameters
   - New website
 
