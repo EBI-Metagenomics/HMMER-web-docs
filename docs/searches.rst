@@ -38,7 +38,7 @@
 Searches
 ========
 
-Four search types are supported: **phmmer**, **hmmsearch** and **hmmscan**.
+Four search types are supported: **phmmer**, **hmmsearch**, **hmmscan** and **jackhmmer**.
 See :ref:`HMMER algorithms` for more information.
 
 There are many different ways that a search on the website
@@ -56,7 +56,7 @@ is followed by a summary table that can be used as a quick reference.
 Search query
 ------------
 
-**phmmer** and **hmmscan** searches take a **single
+**phmmer**, **hmmscan** and **jackhmmer** searches take a **single
 protein amino acid sequence** as the input, controlled
 by the **seq** parameter. The website accepts either `FASTA
 <https://en.wikipedia.org/wiki/FASTA_format>`_ format or an amino acid
@@ -77,7 +77,7 @@ sequence.
 | Required        | Yes (seq or acc)          |
 +-----------------+---------------------------+
 
-**hmmsearch** search can take either a multiple
+**hmmsearch** and **jackhmmer** searches can take either a multiple
 protein sequence alignment as an input or a profile HMM. The alignment
 formats currently accepted are:
 
@@ -90,7 +90,7 @@ formats currently accepted are:
 * `STOCKHOLM <https://en.wikipedia.org/wiki/Stockholm_format>`_ format
 * UC Santa Cruz A2M (alignment to model)
 
-The algorithm **hmmsearch** also permits searches
+The algorithms **hmmsearch** and **jackhmmer** also permits searches
 to be initiated with a profile HMM.  This can be entered as text via
 the website.
 
@@ -156,6 +156,24 @@ hmmsearch
 |                                      | |parameters.incdomE.default| for hit matches       |
 +--------------------------------------+----------------------------------------------------+
 | Reporting threshold (E-value)        | |parameters.E.default| for both sequences and hits |
++--------------------------------------+----------------------------------------------------+
+| Filter                               | Bias composition filtering on                      |
++--------------------------------------+----------------------------------------------------+
+
+jackhmmer
++++++++++
+
++--------------------------------------+----------------------------------------------------+
+| Sequence database                    | UniProt reference proteomes                        |
++--------------------------------------+----------------------------------------------------+
+| Significance threshold (E-value)     | |parameters.incE.default| for sequence matches;    |
+|                                      | |parameters.incdomE.default| for hit matches       |
++--------------------------------------+----------------------------------------------------+
+| Reporting threshold (E-value)        | |parameters.E.default| for both sequences and hits |
++--------------------------------------+----------------------------------------------------+
+| Gap penalties                        | open: |parameters.popen.default|;                  |
+|                                      | extend: |parameters.pextend.default|;              |
+|                                      | scoring matrix: |parameters.mx.default|            |
 +--------------------------------------+----------------------------------------------------+
 | Filter                               | Bias composition filtering on                      |
 +--------------------------------------+----------------------------------------------------+
@@ -259,7 +277,7 @@ unassigned parameter is set to the other assigned parameter value.
 +-----------------+-------------------------------+--------------------------------+
 | Description     | Sequence E-value threshold    | Hit E-value threshold          |
 +-----------------+-------------------------------+--------------------------------+
-| Algorithm       | phmmer, hmmscan, hmmsearch                                     |
+| Algorithm       | phmmer, hmmscan, hmmsearch, jackhmmer                          |
 +-----------------+-------------------------------+--------------------------------+
 | Accepted values | |parameters.incE.min| < x     | |parameters.incdomE.max| < x   |
 |                 | ≤ |parameters.incE.max|       | ≤ |parameters.incdomE.max|     |
@@ -288,7 +306,7 @@ unassigned parameter is set to the other assigned parameter value.
 +-----------------+------------------------------+--------------------------------+
 | Description     | Sequence bit score threshold | Hit bit score threshold        |
 +-----------------+------------------------------+--------------------------------+
-| Algorithm       | phmmer, hmmscan, hmmsearch                                    |
+| Algorithm       | phmmer, hmmscan, hmmsearch, jackhmmer                         |
 +-----------------+------------------------------+--------------------------------+
 | Accepted values | x > |parameters.incT.min|    | x > |parameters.incdomT.min|   |
 +-----------------+------------------------------+--------------------------------+
@@ -320,7 +338,7 @@ Reporting E-values
 | Description     | Sequence E-value threshold    | Hit E-value threshold          |
 |                 | (reporting)                   | (reporting)                    |
 +-----------------+-------------------------------+--------------------------------+
-| Algorithm       | phmmer, hmmscan, hmmsearch                                     |
+| Algorithm       | phmmer, hmmscan, hmmsearch, jackhmmer                          |
 +-----------------+-------------------------------+--------------------------------+
 | Accepted values | |parameters.E.min| < x        | |parameters.domE.max| < x      |
 |                 | ≤ |parameters.E.max|          | ≤ |parameters.domE.max|        |
@@ -349,7 +367,7 @@ set server side.
 | Description     | Sequence E-value threshold    | Hit E-value threshold          |
 |                 | (reporting)                   | (reporting)                    |
 +-----------------+-------------------------------+--------------------------------+
-| Algorithm       | phmmer, hmmscan, hmmsearch                                     |
+| Algorithm       | phmmer, hmmscan, hmmsearch, jackhmmer                          |
 +-----------------+-------------------------------+--------------------------------+
 | Accepted values | x > |parameters.T.min|        | x > |parameters.domT.min|      |
 +-----------------+-------------------------------+--------------------------------+
@@ -414,7 +432,7 @@ This feature can be disabled using the nobias parameter.
 +-----------------+------------------------------------------+
 | Description     | Turns off the bias composition filtering |
 +-----------------+------------------------------------------+
-| Algorithms      | phmmer, hmmscan, hmmsearch               |
+| Algorithms      | phmmer, hmmscan, hmmsearch, jackhmmer    |
 +-----------------+------------------------------------------+
 | Accepted Values | 1                                        |
 +-----------------+------------------------------------------+
@@ -425,7 +443,7 @@ This feature can be disabled using the nobias parameter.
 Gap penalties
 -------------
 
-These are specific to phmmer.
+These are specific to phmmer and jackhmmer.
 
 Open
 ++++
@@ -472,7 +490,7 @@ if no value is set.
 +-----------------+----------------------------+------------------------------+-------------------------+
 | Description     | Gap open penalty           | Gap extend penalty           | Substitution matrix     |
 +-----------------+----------------------------+------------------------------+-------------------------+
-| Algorithm(s)    | phmmer                                                                              |
+| Algorithm(s)    | phmmer, jackhmmer                                                                   |
 +-----------------+----------------------------+------------------------------+-------------------------+
 | Accepted values | |parameters.popen.min|     | |parameters.pextend.min|     | BLOSUM45, BLOSUM62,     |
 |                 | ≤ x <                      | ≤ x <                        | BLOSUM90, PAM30, PAM70  |
