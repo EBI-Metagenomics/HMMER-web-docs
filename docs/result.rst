@@ -154,6 +154,64 @@ Note: In the case of **hmmscan** the query and target lines correspond to
 different data. The second line (previously query) is the "Model" and
 the fourth line (previously target) is the "query".
 
+Jackhmmer iterations
+++++++++++++++++++++
+
+Iteration summary
+^^^^^^^^^^^^^^^^^
+
+After each iteration for jackhmmer, rather than proceeding to the
+results page, you are taken to a summary page, which gives an overview
+of the number of gained, lost or dropped sequences. Sequences gained are
+those that are new sequences compared to the previous iterations,
+scoring above the significance threshold. Lost are previously
+significant sequences, that are no longer reported in the results.
+Dropped sequences are sequences that were previously significant, but
+have fallen below the threshold but are still reported.
+
+.. image:: _static/images/jackhmmer_summary.png
+   :alt: Jackhmmer summary
+
+From this table it is possible to view the results of all previous
+iterations. Thus, if you decide that you want to re-run the latest
+iteration you can simply go back one and add/remove sequences.
+Alternatively, if you are happy with the way searches are proceeding,
+trigger of the next search, with will take all significant hits for the
+next iteration. If you job converges before 9 iterations (which is the
+current maximum), the table will be updated to indicate convergence.
+
+Jackhmmer results
+^^^^^^^^^^^^^^^^^
+
+The results for jackhmmer are much the same as described above for
+phmmer. However, there are a few additions. The first is the inclusions
+of some navigation at the top of the page. There are links to the first
+new match and to the page of results where the threshold appears.
+There are also buttons in this block that allow you to move between
+iterations.
+
+.. image:: _static/images/jackhmmer_navigation.png
+   :alt: Jackhmmer navigation
+
+Another difference is that each row in the results has a check box,
+which allows sequences to be either removed or added to the results (a
+checked box denotes that they will be used in the next iteration). This
+allows you to modify which sequences are included in successive rounds
+of jackhmmer. By default, all sequences above the significance threshold are
+included. As a convenience, an option to override this and deselect
+all sequences is provided. This might useful if you wish to manually add
+only a small number of sequences.
+A button at the top and bottom of each page will allow you
+to start the next iteration.
+
+.. image:: _static/images/jackhmmer_matches.png
+   :alt: Jackhmmer navigation
+
+New sequences in the results are denoted with a green background behind
+the target accession/identifier. Sequences that have dropped below
+threshold compared to the previous iteration are shown with a red
+background behind the target accession/identifier.
+
 Customisation of Results
 ++++++++++++++++++++++++
 
