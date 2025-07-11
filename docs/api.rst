@@ -86,7 +86,7 @@ the number of iterations if it converges.
 
 Searches should be POST-ed to the following url::
 
-  https://wwwdev.ebi.ac.uk/Tools/hmmer/api/v1/search/jackhmmer
+  https://www.ebi.ac.uk/Tools/hmmer/api/v1/search/jackhmmer
 
 
 Results
