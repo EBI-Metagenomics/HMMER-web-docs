@@ -14,7 +14,7 @@ parameters = {
 enc_params = urllib.urlencode(parameters);
 
 #post the seqrch request to the server
-request = urllib2.Request('https://www.ebi.ac.uk/Tools/hmmer/search/phmmer',enc_params)
+request = urllib2.Request('https://wwwdev.ebi.ac.uk/Tools/hmmer/search/phmmer',enc_params)
 
 #get the url where the results can be fetched from
 results_url = urllib2.urlopen(request).getheader('location')

@@ -96,11 +96,11 @@ Search results can be retrieved using the job identifier that is returned in you
 The job identifier is a UUID (format such as 4162F712-1DD2-11B2-B17E-C09EFE1DC403).
 Thus, to retrieve your job, you can use the following URL in a GET request::
 
-  https://www.ebi.ac.uk/Tools/hmmer/api/v1/result/{id}
+  https://wwwdev.ebi.ac.uk/Tools/hmmer/api/v1/result/{id}
 
 Example::
 
-  https://www.ebi.ac.uk//Tools/hmmer/api/v1/result/4162F712-1DD2-11B2-B17E-C09EFE1DC403
+  https://wwwdev.ebi.ac.uk/Tools/hmmer/api/v1/result/4162F712-1DD2-11B2-B17E-C09EFE1DC403
 
 Taxonomy and domain views
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -108,19 +108,19 @@ Taxonomy and domain views
 The API may also be used to retrive the data behind the taxonomy and domain architecture tabs on the results
 page. For taxonomy the URL has the form::
 
-  https://www.ebi.ac.uk/Tools/hmmer/api/v1/taxonomy/{id}/tree
+  https://wwwdev.ebi.ac.uk/Tools/hmmer/api/v1/taxonomy/{id}/tree
 
 Example::
 
-  curl -s -H "Content-type: application/json" 'https://www.ebi.ac.uk/Tools/hmmer/api/v1/taxonomy/8D5B74A0-6158-11E7-B311-1331132D729D/tree'
+  curl -s -H "Content-type: application/json" 'https://wwwdev.ebi.ac.uk/Tools/hmmer/api/v1/taxonomy/8D5B74A0-6158-11E7-B311-1331132D729D/tree'
 
 For domain architecture, two endpoints are provided. The first returns an overview of all architectures::
 
-  https://www.ebi.ac.uk/Tools/hmmer/api/v1/architecture/{id}
+  https://wwwdev.ebi.ac.uk/Tools/hmmer/api/v1/architecture/{id}
 
 Example::
 
-  curl -s -H "Content-type: application/json" 'https://www.ebi.ac.uk/Tools/hmmer/api/v1/architecture/8D5B74A0-6158-11E7-B311-1331132D729D'
+  curl -s -H "Content-type: application/json" 'https://wwwdev.ebi.ac.uk/Tools/hmmer/api/v1/architecture/8D5B74A0-6158-11E7-B311-1331132D729D'
 
 Batch searches
 ^^^^^^^^^^^^^^
