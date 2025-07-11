@@ -77,7 +77,16 @@ Searches should be POST-ed to the following url::
 jackhmmer searches
 ^^^^^^^^^^^^^^^^^^
 
-Jackhmmer currently disabled.
+Jackhmmer is an iterative search algorithm that can be initiated with
+a sequence, multiple sequence alignment or profile HMM. The number of
+iterations to run can be supplied as an additional parameter and will
+perform a succession of searches until the job has completed. Fetching
+the results is a little more complicated, as the search may finish before
+the number of iterations if it converges.
+
+Searches should be POST-ed to the following url::
+
+  https://wwwdev.ebi.ac.uk/Tools/hmmer/api/v1/search/jackhmmer
 
 
 Results
