@@ -39,6 +39,24 @@ Sequence databases
     Produced by UniProt, in collaboration with Ensembl and the NCBI
     Reference Sequence collection.
 
+* MGnify30
+
+  - `MGnify30-C2 <https://docs.mgnify.org/src/docs/mgnify-proteins.html>`_ - Non-singletons
+
+    The non-singletons subset was created by extracting clusters that have at least two members, thereby excluding a majority of the representatives.
+
+  - `MGnify30-C5-FL <https://docs.mgnify.org/src/docs/mgnify-proteins.html>`_ - Larger non-singletons
+  
+    The larger non-singletons subset was created by extracting clusters that
+    have at least five members, including at least one member that is predicted to be a full-length sequence.
+    This subset therefore reduces the space even further, and guarantees at least one full-length sequence for increased confidence.
+
+  - `MGnify30-C5-PPfam <https://docs.mgnify.org/src/docs/mgnify-proteins.html>`_ - Pfam-poor non-singletons
+  
+    The Pfam-poor non-singletons subset was created by extracting clusters that have at least five members,
+    and where at least 90% of the cluster members to not have a Pfam accession.
+    This subset similarly reduces the space significantly, and contains clusters for which function is relatively unknown.
+
 The default database is UniProt reference proteomes.
 
 ---------------------
