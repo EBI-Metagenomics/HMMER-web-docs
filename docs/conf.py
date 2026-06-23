@@ -19,6 +19,7 @@
 # import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
+import datetime
 
 # -- General configuration ------------------------------------------------
 
@@ -51,8 +52,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'HMMER web server'
-copyright = u'2016, EMBL-EBI'
-author = u'Rob Finn & Simon Potter'
+copyright = u'{0}, EMBL-EBI'.format(datetime.date.today().year)
+author = u'Rob Finn, Simon Potter & Aleksandar Rajkovic'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
